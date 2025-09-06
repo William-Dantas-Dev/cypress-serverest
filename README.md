@@ -2,7 +2,7 @@
 
 [![Node.js](https://img.shields.io/badge/Node.js-22.x-green)](https://nodejs.org/)  
 [![Cypress](https://img.shields.io/badge/Cypress-15.x-brightgreen)](https://www.cypress.io/)  
-[![Joi](https://img.shields.io/badge/joi-18.x-brightgreen)](https://github.com/hapijs/joi) 
+[![Joi](https://img.shields.io/badge/joi-18.x-brightgreen)](https://joi.dev/) 
 [![Faker JS](https://img.shields.io/badge/fakerjs-18.x-brightgreen)](https://fakerjs.dev) 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)  
 
@@ -15,7 +15,8 @@ Inclui **validação de contratos** com [Joi](https://joi.dev/).
 - [Node.js](https://nodejs.org/)  
 - [Cypress](https://www.cypress.io/)  
 - [Serverest](https://serverest.dev/)  
-- [Joi](https://joi.dev/) – para contratos de resposta  
+- [Joi](https://joi.dev/)
+- [Fakerjs](https://fakerjs.dev)
 
 ---
 
@@ -24,13 +25,13 @@ Inclui **validação de contratos** com [Joi](https://joi.dev/).
 cypress-serverest/
 ├── cypress/
 ├── ├── contracts  
-│   ├── e2e/              # Cenários de testes E2E
-│   │   └── users.cy.js   # Exemplo de testes de usuários
-│   ├── fixtures/         # Massa de dados para os testes
-│   ├── support/          # Configurações e comandos customizados
-│   └── videos/           # Gravações dos testes (ignorado no git)
+│   ├── e2e/
+│   │   └── users.cy.js
+│   ├── fixtures/
+│   ├── support/
+│   └── videos/
 │
-├── cypress.config.js     # Configurações do Cypress
+├── cypress.config.js 
 ├── package.json
 └── README.md
 ```
