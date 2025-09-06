@@ -1,7 +1,9 @@
 # 📌 Cypress Serverest
 
-[![Node.js](https://img.shields.io/badge/Node.js-18.x-green)](https://nodejs.org/)  
+[![Node.js](https://img.shields.io/badge/Node.js-22.x-green)](https://nodejs.org/)  
 [![Cypress](https://img.shields.io/badge/Cypress-15.x-brightgreen)](https://www.cypress.io/)  
+[![Joi](https://img.shields.io/badge/joi-18.x-brightgreen)](https://github.com/hapijs/joi) 
+[![Faker JS](https://img.shields.io/badge/fakerjs-18.x-brightgreen)](https://fakerjs.dev) 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)  
 
 Projeto de **testes automatizados de API** utilizando **Cypress** e a API **[Serverest](https://serverest.dev/)** para simulação de um ambiente de e-commerce.  
