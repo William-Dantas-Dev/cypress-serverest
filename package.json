@@ -1,0 +1,24 @@
+{
+  "name": "cypress-serverest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/William-Dantas-Dev/cypress-serverest.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/William-Dantas-Dev/cypress-serverest/issues"
+  },
+  "homepage": "https://github.com/William-Dantas-Dev/cypress-serverest#readme",
+  "devDependencies": {
+    "cypress": "^15.1.0",
+    "joi": "^18.0.1"
+  }
+}
