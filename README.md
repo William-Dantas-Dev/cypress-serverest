@@ -32,6 +32,26 @@ cypress-serverest/
 ├── package.json
 └── README.md
 ```
+---
+
+## 📑 Cenários de Teste Implementados
+
+### 🔐 Auth - Login
+- ✅ **Login com sucesso**  
+- ❌ **Login com senha incorreta** → deve retornar erro de autenticação  
+- ❌ **Login com e-mail inválido** → deve retornar erro de validação  
+- ❌ **Login com e-mail não cadastrado** → deve retornar erro de usuário inexistente  
+- ❌ **Login com e-mail em branco** → deve retornar erro de campo obrigatório  
+- ❌ **Login com password em branco** → deve retornar erro de campo obrigatório  
+
+### 👥 Usuários
+- (em desenvolvimento) → ex.: criação, listagem, edição e exclusão de usuários  
+
+### 🛒 Produtos
+- (em desenvolvimento)  
+
+### 📦 Carrinho
+- (em desenvolvimento)  
 
 ---
 
