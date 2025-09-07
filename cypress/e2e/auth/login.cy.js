@@ -8,7 +8,7 @@ describe('Auth - Login', () => {
         password: 'teste'
     }
 
-    it('Deve realizar login com sucesso e validar contratos', () => {
+    it('POST - Deve realizar login com sucesso e validar contratos', () => {
         cy.validatePayload(loginRequest, payload).then(validation => {
             expect(validation.error).to.be.undefined
         })
@@ -18,7 +18,7 @@ describe('Auth - Login', () => {
             expect(responseValidation.error).to.be.undefined
         })
     })
-    it('Não deve logar com senha incorreta', () => {
+    it('POST - Não deve logar com senha incorreta', () => {
         const invalidPayload = {
             ...payload,
             password: 'senha_incorreta'
@@ -35,7 +35,7 @@ describe('Auth - Login', () => {
         })
     })
 
-    it('Não deve logar com email invalido', () => {
+    it('POST - Não deve logar com email invalido', () => {
         const invalidPayload = {
             ...payload,
             email: 'fulano@'
@@ -52,7 +52,7 @@ describe('Auth - Login', () => {
         })
     })
 
-    it('Não deve logar com email não cadastrado', () => {
+    it('POST - Não deve logar com email não cadastrado', () => {
         const invalidPayload = {
             ...payload,
             email: faker.internet.email().toLowerCase()
@@ -69,7 +69,7 @@ describe('Auth - Login', () => {
         })
     })
 
-    it('Não deve logar com email em branco', () => {
+    it('POST - Não deve logar com email em branco', () => {
         const invalidPayload = {
             ...payload,
             email: ''
@@ -87,7 +87,7 @@ describe('Auth - Login', () => {
         })
     })
 
-    it('Não deve logar com password em branco', () => {
+    it('POST - Não deve logar com password em branco', () => {
         const invalidPayload = {
             ...payload,
             password: ''

@@ -15,3 +15,16 @@ Cypress.Commands.add('loginRequest', (payload, callback) => {
         callback(response)
     })
 })
+
+Cypress.Commands.add('registerRequest', (payload, callback) => {
+    cy.request({
+        method: 'POST',
+        url: '/usuarios',
+        body: payload,
+        failOnStatusCode: false
+    }).then((response) => {
+        cy.log('Payload enviado:', JSON.stringify(payload))
+        cy.log('Resposta recebida:', JSON.stringify(response.body))
+        callback(response)
+    })
+})
