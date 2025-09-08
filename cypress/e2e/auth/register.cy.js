@@ -63,7 +63,7 @@ describe('Auth /usuarios - Cadastro', () => {
         });
     });
 
-    it('deve falhar sem campos obrigatórios', () => {
+    it('POST - Deve falhar sem campos obrigatórios', () => {
         const bad = {
             email: faker.internet.email().toLowerCase(),
             administrador: 'true'

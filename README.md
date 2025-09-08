@@ -47,13 +47,22 @@ cypress-serverest/
 - ❌ **Login com e-mail em branco** → deve retornar erro de campo obrigatório  
 - ❌ **Login com password em branco** → deve retornar erro de campo obrigatório  
 
-### 👥 Usuários
-- (em desenvolvimento) → ex.: criação, listagem, edição e exclusão de usuários  
+### 🔐 Auth - Register (`POST /usuarios`)
+- ✅ **Cadastro com sucesso (201)** → validar contrato e retorno  
+- ❌ **Não deve permitir e-mail duplicado** → deve retornar erro `400` e contrato de conflito  
+- ❌ **Deve falhar com e-mail inválido** → deve retornar erro `400/422` e contrato de validação  
+- ❌ **Deve falhar sem campos obrigatórios** → deve retornar erro `400/422` e contrato de validação 
 
-### 🛒 Produtos
+### 👥 Usuários - GET
+- ✅ **Listar usuários com sucesso** → validar contrato e consistência entre `quantidade` e `usuarios.length`  
+- ✅ **Buscar usuário por ID válido** → comparar com item da listagem  
+- ❌ **Buscar usuário com ID válido porém inexistente** → deve retornar erro `400` com `"Usuário não encontrado"`  
+- ❌ **Buscar usuário com formato de ID inválido** → deve retornar erro `400` com `"id deve ter exatamente 16 caracteres alfanuméricos"`  
+
+### 📦 Produtos
 - (em desenvolvimento)  
 
-### 📦 Carrinho
+### 🛒 Carrinho
 - (em desenvolvimento)  
 
 ---

@@ -28,3 +28,16 @@ Cypress.Commands.add('registerRequest', (payload, callback) => {
         callback(response)
     })
 })
+
+Cypress.Commands.add('getUsers', (callback, id = null) => {
+    cy.request({
+        method: 'GET',
+        url: id == null ? `/usuarios` : `/usuarios/${id}`,
+    }).then((response) => {
+        expect(response.status, 'status code').to.eq(200)
+        expect(response.headers, 'headers').to.have.property('content-type')
+        expect(response.headers['content-type']).to.match(/application\/json/i)
+        callback(response)
+    })
+})
+
