@@ -40,30 +40,30 @@ cypress-serverest/
 ## 📑 Cenários de Teste Implementados
 
 ### 🔐 Auth - Login
-- ✅ **Login com sucesso**  
-- ❌ **Login com senha incorreta** → deve retornar erro de autenticação  
-- ❌ **Login com e-mail inválido** → deve retornar erro de validação  
-- ❌ **Login com e-mail não cadastrado** → deve retornar erro de usuário inexistente  
-- ❌ **Login com e-mail em branco** → deve retornar erro de campo obrigatório  
-- ❌ **Login com password em branco** → deve retornar erro de campo obrigatório  
+- ✅ **POST - Login com sucesso** → deve realizar login com sucesso com dados validados
+- ❌ **POST - Login com senha incorreta** → deve retornar erro de autenticação  
+- ❌ **POST - Login com e-mail inválido** → deve retornar erro de validação  
+- ❌ **POST - Login com e-mail não cadastrado** → deve retornar erro de usuário inexistente  
+- ❌ **POST - Login com e-mail em branco** → deve retornar erro de campo obrigatório  
+- ❌ **POST - Login com password em branco** → deve retornar erro de campo obrigatório  
 
-### 🔐 Auth - Register (`POST /usuarios`)
-- ✅ **Cadastro com sucesso (201)** → validar contrato e retorno  
-- ❌ **Não deve permitir e-mail duplicado** → deve retornar erro `400` e contrato de conflito  
-- ❌ **Deve falhar com e-mail inválido** → deve retornar erro `400/422` e contrato de validação  
-- ❌ **Deve falhar sem campos obrigatórios** → deve retornar erro `400/422` e contrato de validação 
+### 🔐 Auth - Register
+- ✅ **POST - Cadastro com sucesso (201)** → validar contrato e retorno  
+- ❌ **POST - Não deve permitir e-mail duplicado** → deve retornar erro `400` e contrato de conflito  
+- ❌ **POST - Deve falhar com e-mail inválido** → deve retornar erro `400/422` e contrato de validação  
+- ❌ **POST - Deve falhar sem campos obrigatórios** → deve retornar erro `400/422` e contrato de validação 
 
 ### 👥 Usuários
-- ✅ **Listar usuários com sucesso** → validar contrato e consistência entre `quantidade` e `usuarios.length`  
-- ✅ **Buscar usuário por ID válido** → comparar com item da listagem  
-- ❌ **Buscar usuário com ID válido porém inexistente** → deve retornar erro `400` com `"Usuário não encontrado"`  
-- ❌ **Buscar usuário com formato de ID inválido** → deve retornar erro `400` com `"id deve ter exatamente 16 caracteres alfanuméricos"`  
-- ✅ **Alterar usuário com sucesso** → Deve alterar um usuário já cadastrado 
-- ✅ **Cadastrar usuário com Id invalido** → Deve realizar cadastro caso id invalido
-- ❌ **Cadastro com e-mail ja cadastrado** → Deve ocorrer erro caso e-mail ja cadastrado
-- ✅ **Deletar usuário com sucesso** → Deve deletar o usuario com sucesso
-- ❌ **Erro ao deletar usuário - ID Invalido** → Deve ocorrer erro ao tentar deletar usuario com ID invalido
-- ❌ **Erro ao deletar usuário com carrinho** -> TODO
+- ✅ **GET - Listar usuários com sucesso** → validar contrato e consistência entre `quantidade` e `usuarios.length`  
+- ✅ **GET - Buscar usuário por ID válido** → comparar com item da listagem  
+- ❌ **GET - Buscar usuário com ID válido porém inexistente** → deve retornar erro `400` com `"Usuário não encontrado"`  
+- ❌ **GET - Buscar usuário com formato de ID inválido** → deve retornar erro `400` com `"id deve ter exatamente 16 caracteres alfanuméricos"`  
+- ✅ **PUT - Alterar usuário com sucesso** → Deve alterar um usuário já cadastrado 
+- ✅ **PUT - Cadastrar usuário com Id invalido** → Deve realizar cadastro caso id invalido
+- ❌ **PUT - Cadastro com e-mail ja cadastrado** → Deve ocorrer erro caso e-mail ja cadastrado
+- ✅ **DELETE - Deletar usuário com sucesso** → Deve deletar o usuario com sucesso
+- ❌ **DELETE - Erro ao deletar usuário - ID Invalido** → Deve ocorrer erro ao tentar deletar usuario com ID invalido
+- ❌ **DELETE - Erro ao deletar usuário com carrinho** -> TODO
 
 ### 📦 Produtos
 - (em desenvolvimento)  
