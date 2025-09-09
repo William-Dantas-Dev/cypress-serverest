@@ -33,6 +33,7 @@ Cypress.Commands.add('getUsers', (callback, id = null) => {
     cy.request({
         method: 'GET',
         url: id == null ? `/usuarios` : `/usuarios/${id}`,
+        failOnStatusCode: false
     }).then((response) => {
         expect(response.status, 'status code').to.eq(200)
         expect(response.headers, 'headers').to.have.property('content-type')
@@ -41,3 +42,28 @@ Cypress.Commands.add('getUsers', (callback, id = null) => {
     })
 })
 
+Cypress.Commands.add('putUser', (callback, id, payload) => {
+    cy.request({
+        method: 'PUT',
+        url: `/usuarios/${id}`,
+        body: payload,
+        failOnStatusCode: false
+    }).then((response) => {
+        expect(response.headers, 'headers').to.have.property('content-type')
+        expect(response.headers['content-type']).to.match(/application\/json/i)
+        callback(response)
+    })
+})
+
+Cypress.Commands.add('deleteUser', (callback, id) => {
+    cy.request({
+        method: 'DELETE',
+        url: `/usuarios/${id}`,
+        failOnStatusCode: false
+    }).then((response) => {
+        expect(response.headers, 'headers').to.have.property('content-type')
+        expect(response.headers['content-type']).to.match(/application\/json/i)
+        cy.log('Resposta recebida:', JSON.stringify(response.body))
+        callback(response)
+    })
+})
