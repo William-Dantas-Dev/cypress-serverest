@@ -8,9 +8,9 @@ const userSchema = Joi.object({
     _id: Joi.string().required(),
 })
 
-const getUsersResponseContract = Joi.object({
+const usersResponseContract = Joi.object({
     quantidade: Joi.number().integer().min(0).required(),
     usuarios: Joi.array().items(userSchema).required(),
 })
 
-export default getUsersResponseContract
+export default usersResponseContract

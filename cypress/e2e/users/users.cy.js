@@ -1,10 +1,10 @@
 import { faker } from '@faker-js/faker';
-import getUsersResponseContract from "../../contracts/users/get.users.response.contract"
+import usersResponseContract from "../../contracts/users/users.response.contract"
 
 describe('Users', () => {
     it('GET - Deve realizar busca por usuarios com sucesso e validar contratos', () => {
         cy.getUsers((response) => {
-            const responseValidation = getUsersResponseContract.validate(response.body)
+            const responseValidation = usersResponseContract.validate(response.body)
             expect(responseValidation.error, 'Contrato Validado').to.be.undefined
             expect(response.body.quantidade, 'quantidade deve bater com length')
                 .to.eq(response.body.usuarios.length)
@@ -13,7 +13,7 @@ describe('Users', () => {
 
     it('GET - Deve realizar busca de usuario por ID (comparar com item da lista)', () => {
         cy.getUsers((responseAll) => {
-            const responseValidation = getUsersResponseContract.validate(responseAll.body)
+            const responseValidation = usersResponseContract.validate(responseAll.body)
             expect(responseValidation.error).to.be.undefined
             const user = responseAll.body.usuarios[0]
             const userId = user._id
@@ -62,7 +62,7 @@ describe('Users', () => {
         }
 
         cy.getUsers((responseAll) => {
-            const responseValidation = getUsersResponseContract.validate(responseAll.body)
+            const responseValidation = usersResponseContract.validate(responseAll.body)
             expect(responseValidation.error).to.be.undefined
             const user = Cypress._.sample(responseAll.body.usuarios)
             cy.putUser((response) => {
@@ -95,7 +95,7 @@ describe('Users', () => {
         }
 
         cy.getUsers((responseAll) => {
-            const responseValidation = getUsersResponseContract.validate(responseAll.body)
+            const responseValidation = usersResponseContract.validate(responseAll.body)
             expect(responseValidation.error).to.be.undefined
 
             const users = responseAll.body.usuarios
@@ -118,7 +118,7 @@ describe('Users', () => {
 
     it('DELETE - Deve deletar o usuario com sucesso', () => {
         cy.getUsers((responseAll) => {
-            const responseValidation = getUsersResponseContract.validate(responseAll.body)
+            const responseValidation = usersResponseContract.validate(responseAll.body)
             expect(responseValidation.error).to.be.undefined
             const user = Cypress._.sample(responseAll.body.usuarios)
             cy.deleteUser((response) => {

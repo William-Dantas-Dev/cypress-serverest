@@ -67,3 +67,16 @@ Cypress.Commands.add('deleteUser', (callback, id) => {
         callback(response)
     })
 })
+
+Cypress.Commands.add('getProducts', (callback, id = null) => {
+    cy.request({
+        method: 'GET',
+        url: id == null ? `/produtos` : `/produtos/${id}`,
+        failOnStatusCode: false
+    }).then((response) => {
+        expect(response.status, 'status code').to.eq(200)
+        expect(response.headers, 'headers').to.have.property('content-type')
+        expect(response.headers['content-type']).to.match(/application\/json/i)
+        callback(response)
+    })
+})
