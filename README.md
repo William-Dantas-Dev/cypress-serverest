@@ -66,7 +66,10 @@ cypress-serverest/
 - ❌ **DELETE - Erro ao deletar usuário com carrinho** -> TODO
 
 ### 📦 Produtos
-- (em desenvolvimento)  
+- ✅ **GET - Listar todos os produtos** → validar contrato e consistência entre `quantidade` e `produtos.length`  
+- ✅ **GET - Buscar produto por ID válido** → comparar com item da listagem  
+- ❌ **GET - Buscar produto com ID válido porém inexistente** → deve retornar erro `400` com `"Produto não encontrado"` 
+- ❌ **GET - Buscar produto com formato de ID inválido** → deve retornar erro `400` com `"id deve ter exatamente 16 caracteres alfanuméricos"`   
 
 ### 🛒 Carrinho
 - (em desenvolvimento)  
