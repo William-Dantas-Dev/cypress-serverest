@@ -68,6 +68,30 @@ Cypress.Commands.add('deleteUser', (callback, id) => {
     })
 })
 
+Cypress.Commands.add('registerProduct', (callback, payload, token) => {
+    cy.request({
+        method: 'POST',
+        url: '/produtos',
+        body: payload,
+        failOnStatusCode: false,
+        headers: token ? { Authorization: `${token}` } : {}
+    }).then((response) => {
+        expect(response.headers, 'headers').to.have.property('content-type')
+        expect(response.headers['content-type']).to.match(/application\/json/i)
+        callback(response)
+    })
+})
+
+Cypress.Commands.add('updateProduct', (callback, id, payload, token, ) => {
+  cy.request({
+    method: 'PUT',
+    url: `/produtos/${id}`,
+    body: payload,
+    failOnStatusCode: false,
+    headers: token ? { Authorization: `Bearer ${token}` } : {}
+  }).then(callback)
+})
+
 Cypress.Commands.add('getProducts', (callback, id = null) => {
     cy.request({
         method: 'GET',

@@ -1,16 +1,24 @@
 import Joi from 'joi'
 
-const productSchema = Joi.object({
-    nome: Joi.string().required(),
-    preco: Joi.number().required(),
-    descricao: Joi.string().required(),
-    quantidade: Joi.number().required(),
-    _id: Joi.string().required(),
+// ✅ 201 - Cadastro com sucesso
+export const productCreatedResponse = Joi.object({
+    message: Joi.string().valid('Cadastro realizado com sucesso').required(),
+    _id: Joi.string().required()
 })
 
-const productsResponseContract = Joi.object({
-    quantidade: Joi.number().integer().min(0).required(),
-    produtos: Joi.array().items(productSchema).required(),
+// ✅ 400 - Produto com nome duplicado
+export const productAlreadyExistsResponse = Joi.object({
+    message: Joi.string().valid('Já existe produto com esse nome').required()
 })
 
-export default productsResponseContract
+// ✅ 401 - Token ausente, inválido ou expirado
+export const unauthorizedTokenResponse = Joi.object({
+    message: Joi.string().valid(
+        'Token de acesso ausente, inválido, expirado ou usuário do token não existe mais'
+    ).required()
+})
+
+// ✅ 403 - Acesso restrito a administradores
+export const adminOnlyRouteResponse = Joi.object({
+    message: Joi.string().valid('Rota exclusiva para administradores').required()
+})

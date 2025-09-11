@@ -66,6 +66,9 @@ cypress-serverest/
 - ❌ **DELETE - Erro ao deletar usuário com carrinho** -> TODO
 
 ### 📦 Produtos
+- ✅ **POST - Registrar Produto** → Deve cadastrar um produto válido (201) e seguir o contrato
+- ❌ **POST - Registrar Produto Nome Ja Existente** → Não deve cadastrar produto com nome já existente (400)
+- ❌ **POST - Validar token ao registrar produto** → Não deve cadastrar produto por Token de acesso ausente, inválido ou expirado
 - ✅ **GET - Listar todos os produtos** → validar contrato e consistência entre `quantidade` e `produtos.length`  
 - ✅ **GET - Buscar produto por ID válido** → comparar com item da listagem  
 - ❌ **GET - Buscar produto com ID válido porém inexistente** → deve retornar erro `400` com `"Produto não encontrado"` 

@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import usersResponseContract from "../../contracts/users/users.response.contract"
+import usersResponseContract from "../../contracts/users/users.request.contract"
 
 describe('Users', () => {
     it('GET - Deve realizar busca por usuarios com sucesso e validar contratos', () => {
