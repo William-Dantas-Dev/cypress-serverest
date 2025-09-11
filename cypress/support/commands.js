@@ -10,8 +10,6 @@ Cypress.Commands.add('loginRequest', (payload, callback) => {
         body: payload,
         failOnStatusCode: false
     }).then((response) => {
-        cy.log('Payload enviado:', JSON.stringify(payload))
-        cy.log('Resposta recebida:', JSON.stringify(response.body))
         callback(response)
     })
 })
@@ -23,8 +21,6 @@ Cypress.Commands.add('registerRequest', (payload, callback) => {
         body: payload,
         failOnStatusCode: false
     }).then((response) => {
-        cy.log('Payload enviado:', JSON.stringify(payload))
-        cy.log('Resposta recebida:', JSON.stringify(response.body))
         callback(response)
     })
 })
@@ -82,14 +78,18 @@ Cypress.Commands.add('registerProduct', (callback, payload, token) => {
     })
 })
 
-Cypress.Commands.add('updateProduct', (callback, id, payload, token, ) => {
-  cy.request({
-    method: 'PUT',
-    url: `/produtos/${id}`,
-    body: payload,
-    failOnStatusCode: false,
-    headers: token ? { Authorization: `Bearer ${token}` } : {}
-  }).then(callback)
+Cypress.Commands.add('updateProduct', (callback, id, payload, token) => {
+    cy.request({
+        method: 'PUT',
+        url: `/produtos/${id}`,
+        body: payload,
+        failOnStatusCode: false,
+        headers: token ? { Authorization: `${token}` } : {}
+    }).then((response) => {
+        expect(response.headers, 'headers').to.have.property('content-type')
+        expect(response.headers['content-type']).to.match(/application\/json/i)
+        callback(response)
+    })
 })
 
 Cypress.Commands.add('getProducts', (callback, id = null) => {
