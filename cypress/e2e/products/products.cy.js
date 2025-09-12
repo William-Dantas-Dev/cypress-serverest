@@ -221,6 +221,7 @@ describe('Users', () => {
 
     it('GET - Deve realizar busca por produtos com sucesso e validar contratos', () => {
         cy.getProducts((response) => {
+            expect(response.status, 'status code').to.eq(200)
             const responseValidation = productsResponseContract.validate(response.body)
             expect(responseValidation.error, 'Contrato Validado').to.be.undefined
             expect(response.body.quantidade, 'quantidade deve bater com length')
@@ -229,13 +230,15 @@ describe('Users', () => {
     })
 
     it('GET - Deve realizar busca de produto por ID (comparar com item da lista)', () => {
-        cy.getProducts((responseAll) => {
-            const responseValidation = productsResponseContract.validate(responseAll.body)
+        cy.getProducts((response) => {
+            expect(response.status, 'status code').to.eq(200)
+            const responseValidation = productsResponseContract.validate(response.body)
             expect(responseValidation.error).to.be.undefined
-            const user = responseAll.body.produtos[0]
+            const user = response.body.produtos[0]
             const userId = user._id
             expect(userId, 'Deve existir um _id válido').to.exist
             cy.getProducts((responseById) => {
+                expect(response.status, 'status code').to.eq(200)
                 expect(responseById.body).to.have.property('_id', userId)
                 expect(responseById.body, 'Testar Produto').to.deep.equal(user)
             }, userId)
@@ -244,29 +247,73 @@ describe('Users', () => {
 
     it('GET - Deve retornar erro ao buscar produto com ID válido porém inexistente', () => {
         const invalidId = 'idinexistente123'
-
-        cy.request({
-            method: 'GET',
-            url: `/produtos/${invalidId}`,
-            failOnStatusCode: false
-        }).then((response) => {
+        cy.getProducts((response) => {
             expect(response.status).to.eq(400)
             expect(response.body).to.have.property('message')
             expect(response.body.message).to.eq("Produto não encontrado")
-        })
+        }, invalidId)
     })
 
     it('GET - Deve retornar erro ao buscar produto com ID inexistente (exemplo fixo)', () => {
         const invalidId = 'id_inexistente_123'
-
-        cy.request({
-            method: 'GET',
-            url: `/produtos/${invalidId}`,
-            failOnStatusCode: false
-        }).then((response) => {
+        cy.getProducts((response) => {
             expect(response.status).to.eq(400)
             expect(response.body).to.have.property('id')
             expect(response.body.id).to.eq("id deve ter exatamente 16 caracteres alfanuméricos")
+        }, invalidId)
+    })
+
+    it('DELETE - Deve deletar produto que não esta no carrinho.', () => {
+        const payload = {
+            nome: faker.commerce.productName(),
+            preco: faker.number.int(100),
+            descricao: faker.commerce.productDescription(),
+            quantidade: faker.number.int(100)
+        }
+
+        cy.validatePayload(productSchemaRegister, payload).then(validation => {
+            expect(validation.error).to.be.undefined
+        })
+
+        cy.then(() => {
+            const token = Cypress.env('token')
+            expect(token, 'token deve estar definido').to.exist
+            cy.registerProduct((response) => {
+                expect(response.status, 'status code').to.eq(201)
+                const responseValidation = productCreatedResponse.validate(response.body)
+                expect(responseValidation.error).to.be.undefined
+                cy.deleteProduct((responseDelete) => {
+                    expect(responseDelete.status).to.eq(200)
+                    expect(responseDelete.body.message).to.eq("Registro excluído com sucesso")
+                }, response.body._id, token)
+            }, payload, token)
+        })
+    })
+
+    it('DELETE - Não deve deletar produto por Token de acesso ausente, inválido ou expirado', () => {
+        const payload = {
+            nome: faker.commerce.productName(),
+            preco: faker.number.int(100),
+            descricao: faker.commerce.productDescription(),
+            quantidade: faker.number.int(100)
+        }
+
+        cy.validatePayload(productSchemaRegister, payload).then(validation => {
+            expect(validation.error).to.be.undefined
+        })
+
+        cy.then(() => {
+            const token = Cypress.env('token')
+            expect(token, 'token deve estar definido').to.exist
+            cy.registerProduct((response) => {
+                expect(response.status, 'status code').to.eq(201)
+                const responseValidation = productCreatedResponse.validate(response.body)
+                expect(responseValidation.error).to.be.undefined
+                cy.deleteProduct((responseDelete) => {
+                    expect(responseDelete.status).to.eq(401)
+                    expect(responseDelete.body.message).to.eq("Token de acesso ausente, inválido, expirado ou usuário do token não existe mais")
+                }, response.body._id, "token")
+            }, payload, token)
         })
     })
 })

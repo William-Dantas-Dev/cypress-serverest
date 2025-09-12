@@ -66,13 +66,19 @@ cypress-serverest/
 - ❌ **DELETE - Erro ao deletar usuário com carrinho** -> TODO
 
 ### 📦 Produtos
-- ✅ **POST - Registrar Produto** → Deve cadastrar um produto válido (201) e seguir o contrato
-- ❌ **POST - Registrar Produto Nome Ja Existente** → Não deve cadastrar produto com nome já existente (400)
-- ❌ **POST - Validar token ao registrar produto** → Não deve cadastrar produto por Token de acesso ausente, inválido ou expirado
+- ✅ **POST - Cadastrar Produto** → Deve cadastrar um produto válido (201) e seguir o contrato
+- ❌ **POST - Cadastrar Produto Nome Ja Existente** → Não deve cadastrar produto com nome já existente (400)
+- ❌ **POST - Validar token ao Cadastrar produto** → Não deve cadastrar produto por Token de acesso ausente, inválido ou expirado
+- ✅ **PUT - Alterar Produto** → Deve alterar um produto válido (200) e seguir o contrato
+- ✅ **PUT - Alterar o produto - Cadastro** → Deve cadastrar um produto caso ID não seja encontrado (201)
+- ❌ **PUT - Validar token ao Alterar produto** → Não deve alterar produto por Token de acesso ausente, inválido ou expirado
+- ❌ **PUT - Erro ao alterar produto com mesmo nome** → deve retornar erro `400` ao alterar produto com nome ja cadastrado
 - ✅ **GET - Listar todos os produtos** → validar contrato e consistência entre `quantidade` e `produtos.length`  
 - ✅ **GET - Buscar produto por ID válido** → comparar com item da listagem  
 - ❌ **GET - Buscar produto com ID válido porém inexistente** → deve retornar erro `400` com `"Produto não encontrado"` 
-- ❌ **GET - Buscar produto com formato de ID inválido** → deve retornar erro `400` com `"id deve ter exatamente 16 caracteres alfanuméricos"`   
+- ❌ **GET - Buscar produto com formato de ID inválido** → deve retornar erro `400` com `"id deve ter exatamente 16 caracteres alfanuméricos"` 
+- ✅ **DELETE - Deletar Produto** → Deve deletar um produto valido
+- ❌ **DELETE - Validar token ao Deletar produto** → Não deve deletar produto por Token de acesso ausente, inválido ou expirado
 
 ### 🛒 Carrinho
 - (em desenvolvimento)  

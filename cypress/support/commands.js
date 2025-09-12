@@ -98,9 +98,22 @@ Cypress.Commands.add('getProducts', (callback, id = null) => {
         url: id == null ? `/produtos` : `/produtos/${id}`,
         failOnStatusCode: false
     }).then((response) => {
-        expect(response.status, 'status code').to.eq(200)
         expect(response.headers, 'headers').to.have.property('content-type')
         expect(response.headers['content-type']).to.match(/application\/json/i)
+        callback(response)
+    })
+})
+
+Cypress.Commands.add('deleteProduct', (callback, id, token) => {
+    cy.request({
+        method: 'DELETE',
+        url: `/produtos/${id}`,
+        failOnStatusCode: false,
+        headers: token ? { Authorization: `${token}` } : {}
+    }).then((response) => {
+        expect(response.headers, 'headers').to.have.property('content-type')
+        expect(response.headers['content-type']).to.match(/application\/json/i)
+        cy.log('Resposta recebida:', JSON.stringify(response.body))
         callback(response)
     })
 })
