@@ -117,3 +117,16 @@ Cypress.Commands.add('deleteProduct', (callback, id, token) => {
         callback(response)
     })
 })
+
+Cypress.Commands.add('getAllCarts', (callback) => {
+    cy.request({
+        method: 'GET',
+        url: '/carrinhos',
+        failOnStatusCode: false,
+    }).then((response) => {
+        expect(response.headers, 'headers').to.have.property('content-type')
+        expect(response.headers['content-type']).to.match(/application\/json/i)
+        cy.log('Resposta recebida:', JSON.stringify(response.body))
+        callback(response)
+    })
+})

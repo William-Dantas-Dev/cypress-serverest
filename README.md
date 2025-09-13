@@ -81,7 +81,7 @@ cypress-serverest/
 - ❌ **DELETE - Validar token ao Deletar produto** → Não deve deletar produto por Token de acesso ausente, inválido ou expirado
 
 ### 🛒 Carrinho
-- (em desenvolvimento)  
+- ✅ **GET - Deve pegar todos os Carrinhos** → Deve buscar todos os carrinhos cadastrados
 
 ---
 
