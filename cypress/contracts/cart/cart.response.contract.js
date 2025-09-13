@@ -19,4 +19,19 @@ const cartResponseSchema = Joi.object({
     carrinhos: Joi.array().items(carrinhoSchema).required(),
 });
 
-export { cartResponseSchema }
+const successCartRegister = Joi.object({
+    message: Joi.string().valid('Cadastro realizado com sucesso').required(),
+    _id: Joi.string().required()
+})
+
+const successCartDelete = Joi.object({
+    message: Joi.string().valid('Registro excluído com sucesso. Estoque dos produtos reabastecido').required(),
+});
+
+const notFoundCartDelete = Joi.object({
+    message: Joi.string().valid('Não foi encontrado carrinho para esse usuário').required(),
+});
+
+const cartDeleteResponse = Joi.alternatives().try(successCartDelete, notFoundCartDelete);
+
+export { cartResponseSchema, successCartRegister, cartDeleteResponse }

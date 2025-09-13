@@ -130,3 +130,32 @@ Cypress.Commands.add('getAllCarts', (callback) => {
         callback(response)
     })
 })
+
+Cypress.Commands.add('registerCart', (callback, payload, token) => {
+    cy.request({
+        method: 'POST',
+        url: `/carrinhos`,
+        body: payload,
+        failOnStatusCode: false,
+        headers: token ? { Authorization: `${token}` } : {}
+    }).then((response) => {
+        expect(response.headers, 'headers').to.have.property('content-type')
+        expect(response.headers['content-type']).to.match(/application\/json/i)
+        cy.log('Resposta recebida:', JSON.stringify(response.body))
+        callback(response)
+    })
+})
+
+Cypress.Commands.add('deleteCart', (callback, url, token) => {
+    cy.request({
+        method: 'DELETE',
+        url: `/carrinhos/${url}`,
+        failOnStatusCode: false,
+        headers: token ? { Authorization: `${token}` } : {}
+    }).then((response) => {
+        expect(response.headers, 'headers').to.have.property('content-type')
+        expect(response.headers['content-type']).to.match(/application\/json/i)
+        cy.log('Resposta recebida:', JSON.stringify(response.body))
+        callback(response)
+    })
+})
