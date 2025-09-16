@@ -12,17 +12,11 @@ pipeline {
                 bat 'npm install'
             }
         }
-
-        stage('run Serverest'){
-            steps {
-                bat 'npm run test:e2e'
-            }
-        }
-
+        
         stage('Test') {
             steps {
                 bat 'set NO_COLOR=1'
-                bat 'npm test'
+                bat 'npm run test:e2e'
             }
         }
     }
