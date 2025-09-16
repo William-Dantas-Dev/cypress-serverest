@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    tools {
-        nodejs 'Node 22'
-    }
-    options { ansiColor('xterm'); timestamps() }
     stages {
         stage('Checkout') {
             steps { checkout scm }
