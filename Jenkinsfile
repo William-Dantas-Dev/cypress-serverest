@@ -1,18 +1,17 @@
 pipeline {
     agent any
+    
     stages {
-        stage('Checkout') {
-            steps { checkout scm }
-        }
-        stage('Setup'){
+        stage('Setup') {
             steps {
                 git branch: 'main', url: 'https://github.com/William-Dantas-Dev/cypress-serverest.git'
                 bat 'npm install'
             }
         }
-        stage('Test'){
+        stage('Test') {
             steps {
-                bat 'NO_COLOR=1 npm test'
+               bat '''set NO_COLOR=1
+                    npm test'''
             }
         }
     }
