@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx serverest",
-    "cy:run": "npx cypress run",
-    "test:e2e": "start-server-and-test dev http://localhost:3000 cy:run"
+    "test": "npx cypress run"
   },
   "repository": {
     "type": "git",
@@ -22,7 +21,6 @@
   "devDependencies": {
     "@faker-js/faker": "^10.0.0",
     "cypress": "^15.1.0",
-    "joi": "^18.0.1",
-    "start-server-and-test": "^2.1.0"
+    "joi": "^18.0.1"
   }
 }

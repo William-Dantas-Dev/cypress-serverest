@@ -12,11 +12,11 @@ pipeline {
                 bat 'npm install'
             }
         }
-        
+
         stage('Test') {
             steps {
                 bat 'set NO_COLOR=1'
-                bat 'npm run test:e2e'
+                bat 'npm test'
             }
         }
     }
