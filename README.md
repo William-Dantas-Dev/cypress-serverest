@@ -84,6 +84,7 @@ cypress-serverest/
 - ✅ **GET - Deve pegar todos os Carrinhos** → Deve buscar todos os carrinhos cadastrados
 - ✅ **POST - Cadastrar Carrinho** → Deve cadastrar um novo carrinho que vincula com o usuário autenticado
 - ✅ **DELETE - Deletar Carrinho** → Deve deletar o carrinho do usuário autenticado
+
 ---
 
 ## ⚙️ Instalação
